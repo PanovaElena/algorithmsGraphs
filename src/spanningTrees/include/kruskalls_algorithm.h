@@ -2,6 +2,7 @@
 #include <type_traits>
 #include "union_find.h"
 #include "graph.h"
+#include "algorithm.h"
 
 // Kruskall's algorithm
 template<class TGraph, template<class> class TUnionFind,
@@ -9,7 +10,7 @@ template<class TGraph, template<class> class TUnionFind,
     class = typename std::enable_if<std::is_base_of<Graph, TGraph>::value>::type,
     class = typename std::enable_if<std::is_base_of<UnionFind<Vertex>, TUnionFind<Vertex>>::value>::type
 >
-class KruskallsAlgorithm {
+class KruskallsAlgorithm : public AlgorithmSpanningTree<TGraph> {
 
     // algorithm complexity is 
     // 1) O(m*log(m)+m*n) for union-find by array
@@ -21,7 +22,7 @@ class KruskallsAlgorithm {
 
 public:
 
-    TGraph operator()(const TGraph& graph) {
+    TGraph operator()(const TGraph& graph) override {
         const size_t numVertices = graph.getVerticesNumber();
 
         TGraph res(numVertices);

@@ -3,6 +3,7 @@
 #include <vector>
 #include "graph.h"
 #include "priority_queue.h"
+#include "algorithm.h"
 
 
 // Prim's algorithm
@@ -11,7 +12,7 @@ template<class TGraph, template <class, class> class TPriorityQueue,
     class = typename std::enable_if<std::is_base_of<Graph, TGraph>::value>::type,
     class = typename std::enable_if<std::is_base_of<PriorityQueue<Vertex, Weight>, TPriorityQueue<Vertex, Weight>>::value>::type
 >
-class PrimsAlgorithm {
+class PrimsAlgorithm : public AlgorithmSpanningTree<TGraph> {
 
     // algorithm complexity is
     // O(n^2+m) = O(n^2) for array of weights of projections
@@ -19,7 +20,7 @@ class PrimsAlgorithm {
 
 public:
 
-    TGraph operator()(const TGraph& graph) {
+    TGraph operator()(const TGraph& graph) override {
         const size_t n = graph.getVerticesNumber();
 
         TGraph res(n);

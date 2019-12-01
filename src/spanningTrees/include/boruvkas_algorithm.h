@@ -3,6 +3,7 @@
 #include <unordered_set>
 #include "union_find.h"
 #include "graph.h"
+#include "algorithm.h"
 
 // Boruvka's algorithm
 template<class TGraph, template<class> class TUnionFind,
@@ -10,7 +11,7 @@ template<class TGraph, template<class> class TUnionFind,
     class = typename std::enable_if<std::is_base_of<Graph, TGraph>::value>::type,
     class = typename std::enable_if<std::is_base_of<UnionFind<Vertex>, TUnionFind<Vertex>>::value>::type
 >
-class BoruvkasAlgorithm {
+class BoruvkasAlgorithm : public AlgorithmSpanningTree<TGraph> {
 
     // algorithm complexity is
     // O(n^2+m*log(n)) for union-find by array
@@ -19,7 +20,7 @@ class BoruvkasAlgorithm {
 
 public:
 
-    TGraph operator()(const TGraph& graph) {
+    TGraph operator()(const TGraph& graph) override {
         const size_t n = graph.getVerticesNumber();
 
         TGraph res(n);
