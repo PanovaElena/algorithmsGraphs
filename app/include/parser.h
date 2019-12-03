@@ -120,13 +120,13 @@ public:
         n = std::stoll(std::string(argv[1]));
         m = std::stoll(std::string(argv[2]));
 
-        if (m < n - 1 || n == 0)
+        if (m < n - 1)
             return ParserStatus::ERROR;
 
         graphType = argsGraph.find(std::string(argv[3]));
         algorithm = argsAlgorithm.find(std::string(argv[4]));
 
-        if (n == 0 || m == 0 || graphType == GraphEnum::noGraph ||
+        if (graphType == GraphEnum::noGraph ||
             algorithm == AlgorithmEnum::noAlgorithm)
             return ParserStatus::ERROR;
 
