@@ -1,0 +1,8 @@
+Boruvka, union-find_by_array;30794
+Boruvka, union-find_by_ranks;363
+Boruvka, union-find_ranks_path_compr;380
+Kruskall, union-find_by_array;31910
+Kruskall, union-find_by_ranks;748
+Kruskall, union-find_ranks_path_compr;772
+Prim, priority_queue_by_array;54099
+Prim, priority_queue_by_2-heap;243
