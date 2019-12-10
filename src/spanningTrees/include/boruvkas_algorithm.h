@@ -14,8 +14,8 @@ template<class TGraph, template<class> class TUnionFind,
 class BoruvkasAlgorithm : public AlgorithmSpanningTree<TGraph> {
 
     // algorithm complexity is
-    // O(n^2+m*log(n)) for union-find by array
-    // O(m*(log(n))^2+n*log(n)) = O(m*(log(n))^2) for union-find by ranks
+    // O(n^2+m*log(n)) ~ O(m*log(n)) for union-find by array
+    // O(m*(log(n))^2+n*log(n)) ~ O(m*(log(n))^2) for union-find by ranks
     // O((m*log(n)+n)*superlog(n)) ~ O(m*log(n)) for union-find by ranks with compressing paths
 
 public:

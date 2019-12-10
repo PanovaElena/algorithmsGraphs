@@ -15,8 +15,8 @@ template<class TGraph, template <class, class> class TPriorityQueue,
 class PrimsAlgorithm : public AlgorithmSpanningTree<TGraph> {
 
     // algorithm complexity is
-    // O(n^2+m) = O(n^2) for array of weights of projections
-    // O((n+m)*log(n)) = O(m*log(n)) for d-heap of weights of projections
+    // O(n^2+m) ~ O(n^2) for array of weights of projections
+    // O((n+m)*log(n)) ~ O(m*log(n)) for d-heap of weights of projections
 
 public:
 

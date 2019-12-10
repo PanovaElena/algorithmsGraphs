@@ -14,8 +14,8 @@ class KruskallsAlgorithm : public AlgorithmSpanningTree<TGraph> {
 
     // algorithm complexity is 
     // 1) O(m*log(m)+m*n) for union-find by array
-    // 2) O(m*log(m)+m*log(n)) for union-find by ranks
-    // 3) O(m*log(m)+m*superlog(n)) ~ O(m*log(m)) for union-find by ranks with compressing paths
+    // 2) O(m*log(m)+m*log(n)) ~ O(m*log(n)) for union-find by ranks
+    // 3) O(m*log(m)+m*superlog(n)) ~ O(m*log(n)) for union-find by ranks with compressing paths
 
     // it may be possible to use linear sort for weights of edges
     // so the best complexity can be O(m+m*superlog(n)) ~ O(m)
@@ -38,7 +38,7 @@ public:
         });
 
 
-        for (size_t i = 0; i < edgeList.size() && res.getEdgesNumber() < numVertices - 1; ++i) {  // O(m)
+        for (size_t i = 0; i < edgeList.size() && res.getEdgesNumber() < numVertices - 1; ++i) {  // O(n)
             Vertex x = divSet.find(edgeList[i].first);  // O(1), O(log(n)) or O(superlog(n)) for different union-finds
             Vertex y = divSet.find(edgeList[i].second);
 
