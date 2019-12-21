@@ -40,7 +40,7 @@ public:
         }
 
         while (res.getEdgesNumber() < n - 1) {  // O(n)
-            std::pair<Vertex, Weight> minPair = projWeightQueue.exactMin();  // O(n) or O(log(n))
+            std::pair<Vertex, Weight> minPair = projWeightQueue.exactMin();  // O(n) or O(log(n)), exact min for vertex with min projection
             Vertex current = minPair.first;
             Weight currentWeight = minPair.second;
 

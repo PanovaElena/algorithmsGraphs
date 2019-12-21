@@ -15,7 +15,7 @@ figures = ['d', '<', 'x', 'o', '*', 's', 'D', '>']
 types = ['-', '--', '-.']
 
 # Kruskall's algorithm complexity is 
-# O(m*log(m)+m*n) ~ O(m*log(n)+m*n) for union-find by array
+# O(m*log(m)+n^2+m) ~ O(m*log(n)+n^2) for union-find by array
 # O(m*log(m)+m*log(n)) ~ O(m*log(n)) for union-find by ranks
 # O(m*log(m)+m*superlog(n)) ~ O(m*log(n)) for union-find by ranks with compressing paths
 
@@ -31,9 +31,7 @@ types = ['-', '--', '-.']
 mlogn = lambda n, m: m*ma.log(n)
 mlogn2 = lambda n, m: m*(ma.log(n)**2)
 n2 = lambda n, m : n**2
-mn = lambda n, m : m*n
 n2_mlogn = lambda n, m : m*ma.log(n)+n**2
-mn_mlogn = lambda n, m : m*ma.log(n)+m*n
 
 complexity = {("Kruskall", "union-find_by_array"): n2_mlogn,
               ("Kruskall", "union-find_by_ranks"): mlogn,
@@ -77,7 +75,10 @@ for dense in NUM_EDGES:
                         i = 0
                         for line in file.readlines():
                             n = NUM_VERTICES[i]
-                            time.append(int(line)/ comp(n, num_edges[2](n)))
+                            c = int(line)/ comp(n, num_edges[2](n))
+                            time.append(c)
+                            if (num_edges[0] == "sparse_3n"):
+                                print("%s %s %d" % (algorithm[0], pr_queue[0], c*comp(264346, num_edges[2](264346))))
                             i+=1
                             
                     ax.plot(NUM_VERTICES, time, '-'+figures[chf], label = "%s, %s" %(algorithm[1], pr_queue[1]))
@@ -95,12 +96,15 @@ for dense in NUM_EDGES:
                         i = 0
                         for line in file.readlines():
                             n = NUM_VERTICES[i]
-                            time.append(int(line)/ comp(n, num_edges[2](n)))
+                            c = int(line)/ comp(n, num_edges[2](n))
+                            time.append(c)
+                            if (num_edges[0] == "sparse_3n"):
+                                print("%s %s %d" % (algorithm[0], union_find[0], c*comp(264346, num_edges[2](264346))))
                             i+=1
                     
                     ax.plot(NUM_VERTICES, time, types[cht % 3]+figures[chf], label = "%s, %s" % (algorithm[1], union_find[1]))
                     chf += 1
                     cht += 1
                     
-        ax.legend(fontsize = 8)
+        ax.legend(fontsize = 8, loc = 'lower right')
         plt.savefig(namePNG, dpi = 1000)    
